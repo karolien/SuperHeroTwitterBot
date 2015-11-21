@@ -1,1 +1,1 @@
-web: gunicorn twitterbotpython:app --log-file=-
+web: gunicorn SuperHeroBot:app --log-file=-
