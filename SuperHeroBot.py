@@ -8,8 +8,8 @@ import os
 
 #        replace mysql.server with "localhost" if you are running via your own server!
 #                        server       MySQL username	MySQL pass  Database name.
-conn = MySQLdb.connect("mysql.server","beginneraccount","cookies","beginneraccount$tutorial")
 
+conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
 c = conn.cursor()
 
 
@@ -28,8 +28,8 @@ class listener(StreamListener):
         
         username = all_data["user"]["screen_name"]
         
-        c.execute("INSERT INTO taula (time, username, tweet) VALUES (%s,%s,%s)",
-            (time.time(), username, tweet))
+        c.execute("INSERT INTO superheronames (id, superheroname, username) VALUES (null,%s,%s)",
+            ("bob brown", username))
 
         conn.commit()
 
