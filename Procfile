@@ -1,0 +1,1 @@
+web: gunicorn SuperheroTwitterBot:app --log-file=-
