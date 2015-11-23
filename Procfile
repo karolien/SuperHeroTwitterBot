@@ -1,1 +1,1 @@
-web: gunicorn SuperHeroBot:app 0.0.0.0:$PORT --log-file=-
+web: python bin/SuperHeroBot.py ${PORT}
