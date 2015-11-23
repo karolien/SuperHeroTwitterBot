@@ -39,14 +39,14 @@ class listener(StreamListener):
 			c.execute("SELECT superheroname FROM superheronames WHERE user_id = " + id)
 			superheroname = c.fetchone()
 			tweet = ("Hello " + superheroname + " @" + username)
-			api.update_status(tweet)
+			api.update_status(status=tweet)
 		except:
 			superheroname = "Super Man"
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
-			api.update_status(tweet)
+			api.update_status(status=tweet)
 		return True
 
 	def on_error(self, status):
