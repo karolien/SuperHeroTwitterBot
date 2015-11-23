@@ -32,7 +32,7 @@ class listener(StreamListener):
         tweet = all_data["text"]
         
         username = all_data["user"]["screen_name"]
-		id = all_data["user"]["id_str"]
+		id = all_data["user"]["id"]
 		superheroname = ""
 		tweet = ""
 		try:
