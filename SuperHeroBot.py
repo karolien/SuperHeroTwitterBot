@@ -42,7 +42,7 @@ class listener(StreamListener):
 		except:
 			superheroname = "Super Man"
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%d,%s)",
-				(id, superheroname))
+				(int(id), superheroname))
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
 
