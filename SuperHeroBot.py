@@ -31,6 +31,7 @@ class listener(StreamListener):
 		tweet_from_user = all_data["text"]
 		username = all_data["user"]["screen_name"]
 		id = all_data["user"]["id"]
+		id = int(id)
 		superheroname = ""
 		tweet = "" 
 
@@ -42,7 +43,7 @@ class listener(StreamListener):
 		except:
 			superheroname = "Super Man"
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%d,%s)",
-				(int(id), superheroname))
+				(id, superheroname))
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
 
