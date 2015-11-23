@@ -42,7 +42,7 @@ class listener(StreamListener):
 			api.update_status(tweet)
 		except:
 			superheroname = "Super Man"
-			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%d,%s)",
+			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
