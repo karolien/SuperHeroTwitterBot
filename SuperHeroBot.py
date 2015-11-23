@@ -46,7 +46,7 @@ class listener(StreamListener):
 				(id, superheroname))
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
-
+			api.update_status(tweet)
 		return True
 
 	def on_error(self, status):
