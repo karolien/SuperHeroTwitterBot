@@ -1,1 +1,1 @@
-web: python bin/SuperHeroBot.py ${PORT}
+web: python SuperHeroBot.py ${PORT}
