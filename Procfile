@@ -1,1 +1,1 @@
-web: gunicorn SuperHeroBot:app --log-file=-
+web: gunicorn SuperHeroBot:app ${PORT} --log-file=-
