@@ -26,11 +26,9 @@ api.verify_credentials
 
 class listener(StreamListener):
 
-    def on_data(self, data):
+	def on_data(self, data):
         all_data = json.loads(data)
-        
-        tweet = all_data["text"]
-        
+		tweet = all_data["text"]
 		username = all_data["user"]["screen_name"]
 		id = all_data["user"]["id"]
 		superheroname = ""
@@ -47,10 +45,10 @@ class listener(StreamListener):
 			conn.commit()
 			tweet = ("Welcome to the club " + superheroname + " @" + username)
 
-        return True
+		return True
 
-    def on_error(self, status):
-        print status
+	def on_error(self, status):
+		print status
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
