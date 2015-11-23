@@ -28,7 +28,7 @@ class listener(StreamListener):
 	def on_data(self,data):
 		all_data = json.loads(data)
 		tweet_from_user = all_data["text"]
-		username = all_data["user"]"["screen_name"]
+		username = all_data["user"]["screen_name"]
 		id = all_data["user"]["id"]
 		superheroname = ""
 		tweet = "" 
