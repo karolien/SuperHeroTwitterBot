@@ -46,6 +46,7 @@ class listener(StreamListener):
 			print ("success")
 		except:
 			superheroname = "Super Man"
+			print("exception raised!")
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
