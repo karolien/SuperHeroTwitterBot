@@ -1,7 +1,6 @@
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-from wordnik import *
 import tweepy
 import MySQLdb
 import time
