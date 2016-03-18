@@ -40,7 +40,7 @@ class listener(StreamListener):
 		id = int(id)
 		superheroname = ""
 		tweet = "" 
-		print(self.getSuperHeroName())
+		print(wordApi.getRandomWords(includePartOfSpeech='noun', limit='1')[0].text)
 		try:
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
@@ -48,7 +48,8 @@ class listener(StreamListener):
 			tweet = ("Hello " + superheroname + " @" + username)
 			api.update_status(status=tweet)
 		except:
-			superheroname = self.getSuperHeroName()
+			#superheroname = self.getSuperHeroName()
+			superhername = wordApi.getRandomWords(includePartOfSpeech='noun', limit='1')[0].text
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
@@ -59,10 +60,10 @@ class listener(StreamListener):
 	def on_error(self, status):
 		print (status)
 		
-	def getSuperHeroName(self):
-		noun = wordApi.getRandomWords(includePartOfSpeech='noun', limit='1')[0]
-		print("success")
-		return noun.text
+	#def getSuperHeroName(self):
+	#	noun = wordApi.getRandomWords(includePartOfSpeech='noun', limit='1')[0]
+	#	print("success")
+	#	return noun.text
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
