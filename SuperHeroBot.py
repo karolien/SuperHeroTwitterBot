@@ -36,7 +36,7 @@ class listener(StreamListener):
 
 		try:
 			print ("entered try statement")
-			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + id)
+			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			print(sql)
 			c.execute(sql)
 			print ("executed SELECT statement")
