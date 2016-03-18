@@ -6,7 +6,7 @@ import MySQLdb
 import time
 import json
 import os
-
+import pymysql
 #        replace mysql.server with "localhost" if you are running via your own server!
 #                        server       MySQL username	MySQL pass  Database name.
 
@@ -50,7 +50,7 @@ class listener(StreamListener):
 		return True
 
 	def on_error(self, status):
-		print status
+		print (status)
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
