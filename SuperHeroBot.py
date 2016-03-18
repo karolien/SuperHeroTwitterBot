@@ -40,7 +40,7 @@ class listener(StreamListener):
 		id = int(id)
 		superheroname = ""
 		tweet = "" 
-		print(getNoun())
+		print(this.getNoun())
 		try:
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
