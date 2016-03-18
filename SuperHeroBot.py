@@ -6,7 +6,7 @@ import MySQLdb
 import time
 import json
 import os
-#        replace mysql.server with "localhost" if you are running via your own server!
+
 #                        server       MySQL username	MySQL pass  Database name.
 
 conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
@@ -36,7 +36,7 @@ class listener(StreamListener):
 
 		try:
 			print ("entered try statement")
-			c.execute("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
+			c.execute("SELECT superheroname FROM superheronames WHERE user_id = %s", id)
 			print ("executed SELECT statement")
 			superheroname = c.fetchone()
 			print ("got superheroname = " + superheroname)
