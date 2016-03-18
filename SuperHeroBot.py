@@ -40,12 +40,17 @@ class listener(StreamListener):
 		tweet = "" 
 		self.getSuperHeroName()
 		try:
+			print("inside try statement")
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
+			print("sql passed")
 			superheroname = c.fetchone()[0]
+			print("got superhero name")
 			tweet = ("Hello " + superheroname + " @" + username)
 			api.update_status(status=tweet)
+			print("tweeted!")
 		except:
+		print("exception raised")
 			superheroname = self.getSuperHeroName()
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
