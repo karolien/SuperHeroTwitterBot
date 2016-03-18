@@ -50,7 +50,7 @@ class listener(StreamListener):
 			api.update_status(status=tweet)
 			print("tweeted!")
 		except:
-		print("exception raised")
+			print("exception raised")
 			superheroname = self.getSuperHeroName()
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
