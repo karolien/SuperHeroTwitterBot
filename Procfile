@@ -1,1 +1,1 @@
-web: python SuperHeroBot.py ${PORT}
+worker: python SuperHeroBot.py
