@@ -29,7 +29,7 @@ auth.set_access_token(atoken, asecret)
 api = tweepy.API(auth)
 api.verify_credentials
 
-wordApi = WordApi.WordApi(client)
+wordApi = WordApi.WordsApi(client)
 
 class listener(StreamListener):
 	def on_data(self,data):
