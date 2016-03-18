@@ -64,5 +64,5 @@ twitterStream.filter(track=["@aSuperHeroClub"])
 
 def getNoun():
 	noun = wordApi.getNoun()
-	return noun
+	return noun.text
 				  
