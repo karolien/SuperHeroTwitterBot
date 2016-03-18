@@ -60,8 +60,8 @@ class listener(StreamListener):
 		print (status)
 		
 	def getNoun():
-	noun = wordApi.getNoun()
-	return noun.text
+		noun = wordApi.getNoun()
+		return noun.text
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
