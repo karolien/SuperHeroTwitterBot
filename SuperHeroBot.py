@@ -36,9 +36,13 @@ class listener(StreamListener):
 
 		try:
 			c.execute("SELECT superheroname FROM superheronames WHERE user_id = " + id)
+			print ("executed SELECT statement")
 			superheroname = c.fetchone()
+			print ("got superheroname = " + superheroname)
 			tweet = ("Hello " + superheroname + " @" + username)
+			print ("tweeting")
 			api.update_status(status=tweet)
+			print ("success")
 		except:
 			superheroname = "Super Man"
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
