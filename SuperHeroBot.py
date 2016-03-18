@@ -52,7 +52,7 @@ class listener(StreamListener):
 			except Exception as e:
 				print e
 		except:
-			superheroname = self.getRandomTitle + ' ' + self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
+			superheroname = self.getRandomTitle() + ' ' + self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
