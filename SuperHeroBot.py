@@ -59,10 +59,12 @@ class listener(StreamListener):
 	def on_error(self, status):
 		print (status)
 		
+	def getNoun():
+	noun = wordApi.getNoun()
+	return noun.text
+		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
 
-def getNoun():
-	noun = wordApi.getNoun()
-	return noun.text
+
 				  
