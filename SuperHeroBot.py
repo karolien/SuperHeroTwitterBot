@@ -7,6 +7,7 @@ import time
 import json
 import os
 import urllib2
+import random
 
 #wordnik connection
 wordnikURLNoun = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=noun&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
@@ -42,22 +43,16 @@ class listener(StreamListener):
 		try:
 			conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
 			c = conn.cursor()
-			print("inside try statement")
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
-			print("sql passed")
 			superheroname = c.fetchone()[0]
-			print("got superhero name")
 			tweet = ("Hello " + superheroname + " @" + username)
-			print(tweet)
 			try:
 				api.update_status(status=tweet)
-				print("tweeted!")
 			except Exception as e:
 				print e
 		except:
-			print("exception raised")
-			superheroname = self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
+			superheroname = self.getRandomTitle + ' ' + self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
@@ -73,6 +68,10 @@ class listener(StreamListener):
 		object = json.loads(response)
 		print object['word']
 		return object['word']
+	
+	def getRandomTitle(self):
+		possibleTitles = ['Captain','Super', 'Doctor']
+		return random.choice(possibleTitles)
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
