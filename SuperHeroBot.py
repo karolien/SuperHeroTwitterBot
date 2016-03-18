@@ -60,7 +60,7 @@ class listener(StreamListener):
 		print (status)
 		
 	def getSuperHeroName(self):
-		noun = wordApi.getNoun()
+		noun = wordApi.getRandomWords(includePartOfSpeech='noun', limit=1)[0]
 		return noun.text
 		
 twitterStream = Stream(auth, listener())
