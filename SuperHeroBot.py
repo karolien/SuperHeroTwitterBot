@@ -49,8 +49,11 @@ class listener(StreamListener):
 			print("got superhero name")
 			tweet = ("Hello " + superheroname + " @" + username)
 			print(tweet)
-			api.update_status(status=tweet)
-			print("tweeted!")
+			try:
+				api.update_status(status=tweet)
+				print("tweeted!")
+			except Exception as e:
+				print e
 		except:
 			print("exception raised")
 			superheroname = self.getSuperHeroName()
