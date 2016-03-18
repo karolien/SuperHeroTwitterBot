@@ -39,6 +39,8 @@ class listener(StreamListener):
 		tweet = "" 
 		self.getSuperHeroName()
 		try:
+			conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
+			c = conn.cursor()
 			print("inside try statement")
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
