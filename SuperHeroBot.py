@@ -9,9 +9,9 @@ import os
 import urllib2
 
 #wordnik connection
-wordnikURLNoun = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=noun&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
+wordnikURLNoun = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=noun&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
 
-wordnikURLAdjective = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=adjective&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
+wordnikURLAdjective = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=adjective&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
 #                        server       MySQL username	MySQL pass  Database name.
 
 conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
@@ -39,7 +39,6 @@ class listener(StreamListener):
 		id = int(id)
 		superheroname = ""
 		tweet = "" 
-		self.getSuperHeroName()
 		try:
 			conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
 			c = conn.cursor()
@@ -58,7 +57,7 @@ class listener(StreamListener):
 				print e
 		except:
 			print("exception raised")
-			superheroname = self.getSuperHeroName()
+			superheroname = self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
@@ -69,8 +68,8 @@ class listener(StreamListener):
 	def on_error(self, status):
 		print (status)
 		
-	def getSuperHeroName(self):
-		response = urllib2.urlopen(wordnikURLNoun).read()
+	def getSuperHeroName(self, url):
+		response = urllib2.urlopen(url).read()
 		object = json.loads(response)
 		print object['word']
 		return object['word']
