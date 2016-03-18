@@ -40,7 +40,7 @@ class listener(StreamListener):
 			print(sql)
 			c.execute(sql)
 			print ("executed SELECT statement")
-			superheroname = c.fetchone()
+			superheroname = c.fetchone()[0]
 			print ("got superheroname = " + superheroname)
 			tweet = ("Hello " + superheroname + " @" + username)
 			print ("tweeting")
