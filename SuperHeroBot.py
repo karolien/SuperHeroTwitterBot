@@ -46,6 +46,7 @@ class listener(StreamListener):
 			superheroname = c.fetchone()[0]
 			print("got superhero name")
 			tweet = ("Hello " + superheroname + " @" + username)
+			print(tweet)
 			api.update_status(status=tweet)
 			print("tweeted!")
 		except:
