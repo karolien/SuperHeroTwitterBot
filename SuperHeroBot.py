@@ -35,6 +35,7 @@ class listener(StreamListener):
 		tweet = "" 
 
 		try:
+			print ("entered try statement")
 			c.execute("SELECT superheroname FROM superheronames WHERE user_id = " + id)
 			print ("executed SELECT statement")
 			superheroname = c.fetchone()
