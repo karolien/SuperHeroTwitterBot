@@ -9,10 +9,7 @@ import json
 import os
 
 #wordnik connection
-wordnikURL = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=2e0e51ea24b90900f600d0a4db3044f1fc4fba36fa243228c";
-apiUrl = 'http://api.wordnik.com/v4'
-apiKey = ['WORDNIK_KEY']
-client = swagger.ApiClient(apiKey, apiUrl)
+wordnikURL = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + ['WORDNIK_KEY'];
 #                        server       MySQL username	MySQL pass  Database name.
 
 conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
@@ -30,7 +27,6 @@ auth.set_access_token(atoken, asecret)
 api = tweepy.API(auth)
 api.verify_credentials
 
-wordApi = WordsApi.WordsApi(client)
 
 class listener(StreamListener):
 	def on_data(self,data):
@@ -49,8 +45,7 @@ class listener(StreamListener):
 			tweet = ("Hello " + superheroname + " @" + username)
 			api.update_status(status=tweet)
 		except:
-			#superheroname = self.getSuperHeroName()
-			superhername = wordApi.getRandomWords(includePartOfSpeech='noun', limit='1')[0].text
+			superheroname = self.getSuperHeroName()
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
