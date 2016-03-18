@@ -40,7 +40,7 @@ class listener(StreamListener):
 		id = int(id)
 		superheroname = ""
 		tweet = "" 
-		print(getNoun)
+		print(getNoun())
 		try:
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
@@ -48,7 +48,7 @@ class listener(StreamListener):
 			tweet = ("Hello " + superheroname + " @" + username)
 			api.update_status(status=tweet)
 		except:
-			superheroname = getNoun
+			superheroname = getNoun()
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
