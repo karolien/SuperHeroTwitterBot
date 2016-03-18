@@ -1,1 +1,1 @@
-worker: python SuperHeroBot
+worker: python SuperHeroBot.py
