@@ -59,7 +59,7 @@ class listener(StreamListener):
 	def on_error(self, status):
 		print (status)
 		
-	def getNoun():
+	def getNoun(self):
 		noun = wordApi.getNoun()
 		return noun.text
 		
