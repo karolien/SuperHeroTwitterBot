@@ -12,7 +12,7 @@ import random
 #wordnik connection
 wordnikURLNoun = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=noun&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
 
-wordnikURLAdjective = "http://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=10000&minDictionaryCount=20&excludePartOfSpeech=proper-noun%2Cproper-noun-plural%2Cproper-noun-posessive%2Csuffix%2Cfamily-name%2Cidiom%2Caffix&hasDictionaryDef=true&includePartOfSpeech=adjective&limit=1&maxLength=7&api_key=" + str(os.environ['WORDNIK_KEY']);
+wordnikURLAdjective = "http://api.wordnik.com/v4/words.json/randomWord?minCorpusCount=10000&minDictionaryCount=20&excludePartOfSpeech=proper-noun%2Cproper-noun-plural%2Cproper-noun-posessive%2Csuffix%2Cfamily-name%2Cidiom%2Caffix&hasDictionaryDef=true&includePartOfSpeech=adjective&maxLength=7&api_key=" + str(os.environ['WORDNIK_KEY']);
 #                        server       MySQL username	MySQL pass  Database name.
 
 conn = MySQLdb.connect(os.environ['SERVER'],os.environ['USER_NAME'],os.environ['PASSWORD'],os.environ['DATABASE_NAME'])
