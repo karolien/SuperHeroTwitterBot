@@ -52,29 +52,31 @@ class listener(StreamListener):
 			except Exception as e:
 				print e
 		except:
-			superheroname = self.getRandomTitle() + ' ' + self.getSuperHeroName(wordnikURLAdjective) + ' ' + self.getSuperHeroName(wordnikURLNoun)
+			superheroname = self.get_random_title() + ' ' + self.get_superhero_name(wordnikURLAdjective) + ' ' + self.get_superhero_name(wordnikURLNoun)
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
-			tweet = ("Welcome to the club " + superheroname + " @" + username)
+			tweet = ("Welcome to the club, " + superheroname + "! @" + username)
 			api.update_status(status=tweet)
+			print(superheroname)
 		return True
 
 	def on_error(self, status):
 		print (status)
 		
-	def getSuperHeroName(self, url):
+	def get_superhero_name(self, url):
 		response = urllib2.urlopen(url).read()
 		object = json.loads(response)
 		output = object['word']
 		output = output[:1].upper() + output[1:]
-		print output
 		return output
 	
-	def getRandomTitle(self):
+	def get_random_title(self):
 		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The']
 		return random.choice(possible_titles)
-		
+	
+	def get_random_greeting(self):
+		possible_greetings
 
 		
 twitterStream = Stream(auth, listener())
