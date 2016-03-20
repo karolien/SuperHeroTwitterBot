@@ -10,7 +10,7 @@ import urllib2
 import random
 
 #wordnik connection
-wordnikURLNoun = "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&&includePartOfSpeech=noun&minLength=5&maxLength=-1&api_key=" + str(os.environ['WORDNIK_KEY']);
+wordnikURLNoun = "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=100&maxCorpusCount=-1&minDictionaryCount=30&maxDictionaryCount=-1&includePartOfSpeech=noun&excludePartOfSpeech=noun-plural,noun-posessive,proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&minLength=5&maxLength=8&api_key=" + str(os.environ['WORDNIK_KEY']);
 
 wordnikURLAdjective = "http://api.wordnik.com/v4/words.json/randomWord?minCorpusCount=10000&minDictionaryCount=20&excludePartOfSpeech=proper-noun%2Cproper-noun-plural%2Cproper-noun-posessive%2Csuffix%2Cfamily-name%2Cidiom%2Caffix&hasDictionaryDef=true&includePartOfSpeech=adjective&maxLength=7&api_key=" + str(os.environ['WORDNIK_KEY']);
 #                        server       MySQL username	MySQL pass  Database name.
@@ -52,7 +52,7 @@ class listener(StreamListener):
 			except Exception as e:
 				print e
 		except:
-			superheroname = self.getRandomTitle() + ' ' + self.getSuperHeroName(wordnikURLNoun) + ' ' + self.getSuperHeroName(wordnikURLAdjective)
+			superheroname = self.getRandomTitle() + ' ' + self.getSuperHeroName(wordnikURLAdjective) + ' ' + self.getSuperHeroName(wordnikURLNoun)
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
@@ -72,7 +72,7 @@ class listener(StreamListener):
 		return output
 	
 	def getRandomTitle(self):
-		possible_titles = ['Captain','Super', 'Doctor', 'The']
+		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The']
 		return random.choice(possible_titles)
 		
 
