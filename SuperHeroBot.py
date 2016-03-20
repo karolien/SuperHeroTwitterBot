@@ -46,7 +46,7 @@ class listener(StreamListener):
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
 			superheroname = c.fetchone()[0]
-			tweet = ("Hello " + superheroname + " @" + username)
+			tweet = (self.get_random_greeting() + ', ' + superheroname + "! @" + username)
 			try:
 				api.update_status(status=tweet)
 			except Exception as e:
@@ -56,7 +56,7 @@ class listener(StreamListener):
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
-			tweet = ("Welcome to the club, " + superheroname + "! @" + username)
+			tweet = (self.get_random_welcome() + ', ' + superheroname + "! @" + username)
 			api.update_status(status=tweet)
 			print(superheroname)
 		return True
@@ -76,8 +76,12 @@ class listener(StreamListener):
 		return random.choice(possible_titles)
 	
 	def get_random_greeting(self):
-		possible_greetings
-
+		possible_greetings = ['Hello','Greetings','Good day', 'Nice to hear from you', 'No missions for you today', 'The world thanks you for your service', 'The club is proud to have you','Take a rest day, you deserve it']
+		return random.choice(possible_greetings)
+	
+	def get_random_welcome(self):
+		possible_welcomes = ['Welcome to the club','A new member! Everyone welcome to the club','A warm welcome to the highly esteemed','Thank you for joining The Suphero Club']
+		return random.choice(possible_welcomes)
 		
 twitterStream = Stream(auth, listener())
 twitterStream.filter(track=["@aSuperHeroClub"])
