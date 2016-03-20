@@ -80,7 +80,7 @@ class listener(StreamListener):
 		return random.choice(possible_greetings)
 	
 	def get_random_welcome(self):
-		possible_welcomes = ['Welcome to the club','A new member! Everyone welcome to the club','A warm welcome to the highly esteemed','Thank you for joining The Suphero Club']
+		possible_welcomes = ['Welcome to the club','A new member! Everyone welcome to the club','A warm welcome to the highly esteemed','Thank you for joining The Superhero Club']
 		return random.choice(possible_welcomes)
 		
 twitterStream = Stream(auth, listener())
