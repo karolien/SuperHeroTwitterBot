@@ -1,4 +1,8 @@
 # Superhero Twitter Bot
+
+##@aSuperHeroClub
+
+
 The purpose of this app is to create a Twitter Bot that generates random superhero names to users that tweet it. The Twitter account linked to this bot will be a 'Superhero Club'.
 
 
@@ -14,3 +18,6 @@ The bot stores Twitter user ids, as well as superhero names in an SQL database.
 3. A noun (selected at random using Wordnik API).
 
 The app will be deployed using Heroku.
+
+
+
