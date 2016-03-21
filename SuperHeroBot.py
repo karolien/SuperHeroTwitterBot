@@ -46,7 +46,7 @@ class listener(StreamListener):
 			sql = ("SELECT superheroname FROM superheronames WHERE user_id = " + str(id))
 			c.execute(sql)
 			superheroname = c.fetchone()[0]
-			tweet = ("@" + username + " " + self.get_random_greeting() + ', ' + superheroname + "!"")
+			tweet = ('@' + username + ' ' + self.get_random_greeting() + ', ' + superheroname + '!')
 			try:
 				api.update_status(status=tweet)
 			except Exception as e:
@@ -56,7 +56,7 @@ class listener(StreamListener):
 			c.execute("INSERT INTO superheronames (user_id, superheroname) VALUES (%s,%s)",
 				(id, superheroname))
 			conn.commit()
-			tweet = ("@" + username + " " + self.get_random_welcome() + ', ' + superheroname + "!" )
+			tweet = ('@' + username + ' ' + self.get_random_welcome() + ', ' + superheroname + '!')
 			api.update_status(status=tweet)
 			print(superheroname)
 		return True
