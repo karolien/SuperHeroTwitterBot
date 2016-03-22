@@ -72,15 +72,15 @@ class listener(StreamListener):
 		return output
 	
 	def get_random_title(self):
-		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The']
+		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The', 'Night', 'The Great', 'Detective','Amazing','Mega']
 		return random.choice(possible_titles)
 	
 	def get_random_greeting(self):
-		possible_greetings = ['Hello','Greetings','Good day', 'Nice to hear from you', 'No missions for you today', 'The world thanks you for your service', 'The club is proud to have you','Take a rest day, you deserve it']
+		possible_greetings = ['Hello','Greetings','Good day', 'Nice to hear from you', 'No missions for you today', 'The world thanks you for your service', 'The club is proud to have you','Take a rest day, you deserve it', 'The club will let you know when we have a mission for you']
 		return random.choice(possible_greetings)
 	
 	def get_random_welcome(self):
-		possible_welcomes = ['Welcome to the club','A new member! Everyone welcome to the club','A warm welcome to the highly esteemed','Thank you for joining The Superhero Club']
+		possible_welcomes = ['Welcome to the club','A new member! Everyone welcome to the club','A warm welcome to the highly esteemed','Thank you for joining The Superhero Club', 'Your application for The Superhero Club has been approved']
 		return random.choice(possible_welcomes)
 		
 twitterStream = Stream(auth, listener())
