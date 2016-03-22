@@ -72,7 +72,7 @@ class listener(StreamListener):
 		return output
 	
 	def get_random_title(self):
-		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The', 'Night', 'The Great', 'Detective','Amazing','Mega']
+		possible_titles = ['Captain','Super', 'Dr.', 'The', 'The', 'The', 'Night', 'The Great', 'Detective','Amazing','Mega', 'The Phantom','Major','The Powerful','Secret Agent','Invisible','Fantastic','Agent','Steel','Magnificent','Wonder','The Flying', 'Iron','Thunder','Dark','Giant','Space']
 		return random.choice(possible_titles)
 	
 	def get_random_greeting(self):
